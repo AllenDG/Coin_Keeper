@@ -1,0 +1,81 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<Object> menuItems = new List<Object>();
+
+    menuItems.Add(new
+    {
+        text = "General",
+        separator=true,
+    });
+
+    menuItems.Add(new
+    {
+        text = "Dashboard",
+        url = "/",
+        iconCss = "fa-solid fa-box",
+
+    });
+
+    menuItems.Add(new
+    {
+        text = "Categories",
+        url = "/Category",
+        iconCss="fa-solid fa-folder-closed",
+     
+    });
+
+    menuItems.Add(new
+    {
+        text = "Transactions",
+        iconCss="fa-solid fa-arrow-right-arrow-left",
+        url = "/Transaction"
+    });
+
+    menuItems.Add(new
+    {
+        text = "Extra",
+        separator = true,
+    });
+
+    menuItems.Add(new
+    {
+        text = "Settings",
+        iconCss = "fa-solid fa-gear",
+        url = "#"
+    });
+}
+
+<ejs-sidebar id="sidebar" width="270px" enableDock dockSize="30px">
+    <e-content-template>
+
+        <div class="logo-wrapper">
+            <div class="w-100"></div>
+            <i id="sidebar-toggler" class="fa-solid fa-angles-left"></i>
+        </div>
+
+        <div class="profile-wrapper">
+            <img class="profile-pic" src="~/profile.jpg" />
+            <div class="titles d-flex flex-column ps-3">
+                <h6 class="mb-0">Pickaro</h6>
+                <span class="text-muted">Allen Walter De Guzman</span>
+            </div>
+        </div>
+
+
+        <ejs-menu id="menu" items="menuItems"
+        orientation="Vertical"
+        hamburgerMode></ejs-menu>
+    </e-content-template>
+
+</ejs-sidebar>
+
+ <script>
+     document.addEventListener('DOMContentLoaded', function(){
+         dockBar = document.getElementById('sidebar').ej2_instances[0];
+         document.getElementById('sidebar-toggler').onclick = function (){
+             dockBar.toggle();
+         };
+     });
+ </script>

@@ -1,0 +1,53 @@
+﻿@model Coin_Keeper.Models.Transaction
+
+@{
+   
+    ViewData["PageTitle"] = Model.TransactionId == 0 ? "Create a new transaction" : "Edit transaction";
+}
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5" style="background-color:#222831">
+        <form asp-action="AddOrEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="TransactionId" value="@Model.TransactionId"/>
+                <div class="mb-3">
+                    <ejs-datepicker id="date" ejs-for="Date"
+                    placeholder="Date" floatLabelType="Always"
+                    format="MMM-dd-yy"></ejs-datepicker>
+                    
+                </div>
+            <div class="mb-3">
+                    <ejs-dropdownlist id="ddlCategory" ejs-for="CategoryId"
+                     dataSource="@ViewBag.Categories" placeholder="Category"
+                    floatLabelType="Always" allowFiltering="true">
+                    <e-dropdownlist-fields value="CategoryId" text="Title"> </e-dropdownlist-fields>
+                    </ejs-dropdownlist>
+                    <span asp-validation-for="CategoryId" class="text-danger fs-5"></span>
+            </div>
+            <div class="mb-3">
+                    <ejs-numerictextbox id="amount" ejs-for="Amount" 
+                    placeholder="Amount" floatLabelType="Always"
+                    min=0 format="c0" ></ejs-numerictextbox>
+                <span asp-validation-for="Amount" class="text-danger fs-5"></span>
+            </div>
+            <div class="mb-3">
+                 <ejs-textbox id="note" placeholder="Note" ejs-for="Note" 
+                 floatLabelType="Always" multiline="true"></ejs-textbox>
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+
+                <ejs-button id="submit" type="submit" content="Submit" ></ejs-button>
+        </form>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center">
+            <img src="~/android-chrome-192x192.png" />
+        </div>
+    </div>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
